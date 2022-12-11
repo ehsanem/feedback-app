@@ -8,7 +8,7 @@ function Header({name, bgColor, textColor}) {
     <header style={headerStyle}>
         <div className="container">
             <h1>
-                Good morning {name}
+                Feedback Form
             </h1>
         </div>
     </header>

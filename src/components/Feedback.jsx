@@ -1,28 +1,23 @@
-import {useState} from 'react'
+import Card from './Card'
+import {FaTimes} from 'react-icons/fa'
 
 
-function Feedback() {
-    const [rating,SetRating]=useState(7)
-    const ratingFunc=()=>{
-        SetRating(
-            (prev)=>{
-                return prev+1
-            }
-        )
-    }
+
+function Feedback({itemData}) {
+ 
   return (
     <>
-        <div className='card'>
+        <Card>
             <div className='num-display'>
-            {rating}
+                {itemData.rating}
             </div>
-            <div className='text-display'>
-                This is a feedback
-            </div>
-            <button onClick={ratingFunc}>
-                Click me
+            <button className='close'>
+                <FaTimes color='purple'></FaTimes>
             </button>
-        </div>
+            <div className='text-display'>
+                {itemData.text}
+            </div>
+        </Card>
     </>
   )
 }
