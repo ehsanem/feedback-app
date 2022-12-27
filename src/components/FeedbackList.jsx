@@ -1,9 +1,11 @@
 import Feedback from "./Feedback"
 import { motion, AnimatePresence } from "framer-motion"
+import { useContext } from "react"
+import FeedbackContext from "../Context/FeedbackContext"
 
-function FeedbackList ({compData}) {
-
-    return (
+function FeedbackList () {
+    const {compData,loadingStat}=useContext(FeedbackContext)
+    return loadingStat ? <div>Loading...</div> : (
         <AnimatePresence>
         {compData.map((item)=>(
             

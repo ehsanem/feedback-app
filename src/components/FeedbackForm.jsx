@@ -1,10 +1,11 @@
-import { useState } from 'react'
+import { useState,useContext, useEffect } from 'react'
 import React from 'react'
 import Card from './Card'
 import Button from './shared/Button'
+import FeedbackContext from '../Context/FeedbackContext'
 
-
-function FeedbackForm({handleFeedback}) {
+function FeedbackForm() {
+    const {addFeedback, editfeedbackState,updateFeedback}=useContext(FeedbackContext)
     const [feedback,setFeedback]=useState('')
     const [btnStatus,setBtnStatus]=useState(true)
     const [message,setMessage]=useState('')
@@ -30,9 +31,21 @@ function FeedbackForm({handleFeedback}) {
         const feedbackData={
             text:feedback,
         }
-        handleFeedback(feedbackData)
+        if (editfeedbackState.edit===true){
+            updateFeedback(editfeedbackState.item.id,feedbackData)
+        }
+        else{
+            addFeedback(feedbackData)
+        }
         setFeedback('')
+
     }
+    useEffect(()=>{
+        if (editfeedbackState.edit===true){
+            setBtnStatus(false)
+            setFeedback(editfeedbackState.item.text)
+        }
+    },[editfeedbackState])
     
   return (
     <div>
